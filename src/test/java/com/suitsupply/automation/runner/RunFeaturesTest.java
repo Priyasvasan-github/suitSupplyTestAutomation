@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features = "src/test/resources/customMade/suite/", glue = "com.suitsupply.automation.stepDefinitions")
+@CucumberOptions(features = "src/test/resources/customMade/suite/", glue = "com.suitsupply.automation.stepDefinitions",tags = {"@tt"})
 
 public class RunFeaturesTest {
 

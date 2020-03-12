@@ -10,32 +10,47 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath="//span[contains(text(),'Custom made')]")
+    @FindBy(xpath="//img[@alt='Hero']")
+    WebElement homePageBanner;
+
+    @FindBy(xpath="//a[contains(text(),'Men')]")
+    WebElement optionOfMenSelection;
+
+    @FindBy(css="#navigationModal #CustomMade button")
     WebElement customModeMenuOption;
 
-    @FindBy(xpath="//div[@class='dyo-menu-container _dis-f']//span[contains(text(),'Suit')]")
+    @FindBy(xpath="//div[@id='navigationModal']//a[@id='CustomMadeSuit' and contains(text(),'Suit')]")
     WebElement suiteOptionFromCustomMode;
 
-    @FindBy(xpath="//div[@class='dyo-menu-container _dis-f']//span[contains(text(),'Shirt')]")
-    WebElement shirtOptionFromCustomMode;
+    @FindBy(css="#navigationModal #CustomMadeTrouser")
+    WebElement trouserOptionFromCustomMode;
 
-    @FindBy(xpath="//div[@class='dyo-menu-container _dis-f']//span[contains(text(),'Jacket')]")
+    @FindBy(css="#navigationModal #CustomMadeJacket")
     WebElement jacketOptionFromCustomMode;
 
     /**
      * This method is to return if custom mode menu option is displayed or not
      * @return
      */
-    public boolean isCustomModeMenuOptionDisplayed(){
-        waitForElementToBeDisplayed(customModeMenuOption);
-        return customModeMenuOption.isDisplayed();
+    public boolean isHomePageBannerDisplayed(){
+        waitForElementToBeDisplayed(homePageBanner);
+        return homePageBanner.isDisplayed();
+    }
+
+    /**
+     * This Method is used to click on custom mode Menu option
+     */
+    public void clickOnMenMenuOption(){
+        optionOfMenSelection.click();
     }
 
     /**
      * This Method is used to click on custom mode Menu option
      */
     public void clickCustomModeOption(){
+        waitForElementToBeClickable(customModeMenuOption);
         customModeMenuOption.click();
+        setWaitForElementTimeout(500);
     }
 
     /**
@@ -43,16 +58,19 @@ public class HomePage extends BasePage {
      */
     public void clickSuiteOptionFromCustomMode(){
         clickCustomModeOption();
+        waitForElementToBeClickable(suiteOptionFromCustomMode);
         suiteOptionFromCustomMode.click();
     }
 
-    public void clickShirtOptionFromCustomMode(){
+    public void clickTrouserOptionFromCustomMode(){
         clickCustomModeOption();
-        shirtOptionFromCustomMode.click();
+        waitForElementToBeClickable(trouserOptionFromCustomMode);
+        trouserOptionFromCustomMode.click();
     }
 
     public void clickJacketOptionFromCustomMode(){
         clickCustomModeOption();
+        waitForElementToBeClickable(jacketOptionFromCustomMode);
         jacketOptionFromCustomMode.click();
     }
 

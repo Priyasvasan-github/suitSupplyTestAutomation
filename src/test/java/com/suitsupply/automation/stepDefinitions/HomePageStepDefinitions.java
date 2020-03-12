@@ -9,8 +9,12 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 import cucumber.api.DataTable;
+import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 import java.util.Map;
+
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -41,9 +45,10 @@ public class HomePageStepDefinitions {
 
     @Then("^he should view below options to select$")
     public void verifySideMenuOptionsAreDisplayedCorrectly(DataTable dataTable) {
-        List<Map<String, String>>sideMenuOptions = dataTable.asMaps(String.class, String.class);
-        for(int i=1;i<=sideMenuOptions.get(sideMenuOptions.size()-1).size();i++){
-            assertThat(customSuiteActions.isSideMenuOptionDisplayed(sideMenuOptions.get(0).get("Option"+i)));
+        customSuiteActions.handleCookieNotification();
+        List<Map<String, String>>chooseMenuOptions = dataTable.asMaps(String.class, String.class);
+        for(int i=1;i<=chooseMenuOptions.get(chooseMenuOptions.size()-1).size();i++){
+            assertThat(customSuiteActions.isMenuOptionToSelectDisplayed(chooseMenuOptions.get(0).get("Option"+i))).isTrue();
         }
     }
 

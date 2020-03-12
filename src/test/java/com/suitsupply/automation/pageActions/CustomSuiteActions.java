@@ -1,6 +1,6 @@
 package com.suitsupply.automation.pageActions;
 
-import com.suitsupply.automation.helper.SideMenuOptions;
+import com.suitsupply.automation.helper.ChooseMenuOptions;
 import com.suitsupply.automation.pageObjects.CustomSuitePage;
 import net.thucydides.core.annotations.Step;
 
@@ -17,19 +17,31 @@ public class CustomSuiteActions {
      * @return
      */
     @Step
-    public boolean isSideMenuOptionDisplayed(String menuOption){
+    public boolean isMenuOptionToSelectDisplayed(String menuOption){
+        customSuitePage.isShadowDomLoaded();
         switch (menuOption.toUpperCase()){
-            case SideMenuOptions.FABRIC : return customSuitePage.isFabricSideMenuDisplayed();
-            case SideMenuOptions.JACKET_FIT : return customSuitePage.isJacketSideMenuDisplayed();
-            case SideMenuOptions.TROUSERS_FIT : return customSuitePage.isTrousersFitSideMenuDisplayed();
-            case SideMenuOptions.TURN_UP : return customSuitePage.isTurnUpSideMenuDisplayed();
-            case SideMenuOptions.WAISTBAND : return customSuitePage.isWaistBandSideMenuDisplayed();
-            case SideMenuOptions.WAISTCOAT : return customSuitePage.isWaistCoatSideMenuDisplayed();
-            case SideMenuOptions.EXTRA_TROUSERS : return customSuitePage.isExtraTrousersSideMenuDisplayed();
-            case SideMenuOptions.TROUSERS_SIZE : return customSuitePage.isTrousersSizeSideMenuDisplayed();
-            case SideMenuOptions.JACKET_SIZE : return customSuitePage.isJacketSizeSideMenuDisplayed();
+            case ChooseMenuOptions.FABRIC : return customSuitePage.isFabricChooseMenuDisplayed();
+            case ChooseMenuOptions.JACKET : return customSuitePage.isJacketChooseMenuDisplayed();
+            case ChooseMenuOptions.TROUSERS : return customSuitePage.isTrousersFitChooseMenuDisplayed();
+            case ChooseMenuOptions.TURN_UP : return customSuitePage.isTurnUpChooseMenuDisplayed();
+            case ChooseMenuOptions.WAISTBAND : return customSuitePage.isWaistBandChooseMenuDisplayed();
+            case ChooseMenuOptions.WAISTCOAT : return customSuitePage.isWaistCoatChooseMenuDisplayed();
+            case ChooseMenuOptions.EXTRA_TROUSERS : return customSuitePage.isExtraTrousersChooseMenuDisplayed();
+            case ChooseMenuOptions.TROUSERS_SIZE : return customSuitePage.isTrouserSizeSizeChooseMenuDisplayed();
+            case ChooseMenuOptions.JACKET_SIZE : return customSuitePage.isJacketSizeChooseMenuDisplayed();
+            case ChooseMenuOptions.SIZE : return  customSuitePage.isSizeChooseMenuDisplayed();
             default: throw new IllegalArgumentException("check the menu Option provided");
         }
+    }
+
+    @Step
+    public void handleCookieNotification(){
+        customSuitePage.handleCookieNotification();
+    }
+
+    @Step
+    public boolean isPageLoaded(){
+        return customSuitePage.isPageLoaded();
     }
 
 }

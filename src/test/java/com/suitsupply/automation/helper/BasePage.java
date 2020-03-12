@@ -1,10 +1,7 @@
 package com.suitsupply.automation.helper;
 
 import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,8 +18,14 @@ public class BasePage extends PageObject {
         webElement.sendKeys(text);
         waitForElementToBeDisplayed(webElement);
         webElement.sendKeys(Keys.TAB);
-
     }
+
+    public WebElement expandRootElement(WebElement element,WebDriver driver) {
+        WebElement ele = (WebElement) ((JavascriptExecutor)driver)
+                .executeScript("return arguments[0].shadowRoot", element);
+        return ele;
+    }
+
 
     /*
      * This Method makes element to wait till element is Displayed
